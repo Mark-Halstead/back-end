@@ -14,7 +14,14 @@ app.get("/", (req,res) => {
 })
 
 app.get("/goats", (req, res) => {
-    res.status(503).json(goats)
+
+    //Extract maxAge query params
+    const { maxAge } = req.query
+    if (maxAge) {
+        res.json(goats.filter(g => g["age"] <= maxAge))
+    } else {
+        res.json(goats)
+    }
 })
 
 // Getting individual goats
@@ -28,7 +35,7 @@ app.get("/goats/:id", (req,res) => {
     if (goat) {
         res.json(goat)
     } else {
-        //Send a status of 404 with a message
+        //Send a status of 404 with a message if no goat at the link
         res.status(404).json({
             error: "No such goat!"
         })

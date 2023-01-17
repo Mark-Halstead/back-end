@@ -7,7 +7,7 @@ const goats =
         "favoriteColor": "blue" },
         { "id": 2,
         "name": "Beehroncia",
-        "age" : 100,
+        "age" : 54,
         "sex": "F",
         "favoriteColor": "blue" },
         { "id": 3,
