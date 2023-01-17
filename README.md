@@ -1,9 +1,10 @@
 ## Back-end Development
 
 ## Client
-
+- Makes requests
 
 ## Server
+- Listens to and responds to requests
 
 ## Installation
 
@@ -12,9 +13,17 @@
 
 `npm install -D`
 
+## Development
+
+From the `./server` folder, run `npm run dev`
+
 ## Production/deployment
 
 From the `./server` folder, run `npm run dev`
+
+## Challenges
+
+See picture!
 
 ## Notes
 
