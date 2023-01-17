@@ -6,7 +6,7 @@ const { goats, nextId } = require("./goats")
 
 
 const app = express() // Make a very basic server using express
-
+const logger = require("./logger")
 
 // Middleware
 
@@ -15,6 +15,7 @@ const app = express() // Make a very basic server using express
 // req -> [auth (checks the req headers for a key)] -> [API] -> response
 
 app.use(cors())
+app.use(logger)
 
 //Endpoints
 
