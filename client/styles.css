@@ -1,0 +1,18 @@
+h1 {
+    color: hotpink;
+}
+
+.goat {
+    width: 200px;
+    height: 200px;
+    border-radius: 0;
+    outline: 1px;
+}
+
+.young {
+    border: 3px solid lightgreen;
+}
+
+.old {
+    border: 3px solid grey;
+}
