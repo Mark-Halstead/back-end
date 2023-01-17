@@ -2,19 +2,19 @@ const goats =
     [
         { "id": 1,
         "name": "Billy",
-        "age" : 6,
+        "age" : 4,
         "sex": "M",
         "favoriteColor": "blue" },
         { "id": 2,
         "name": "Beehroncia",
         "age" : 54,
         "sex": "F",
-        "favoriteColor": "blue" },
+        "favoriteColor": "green" },
         { "id": 3,
         "name": "Ezekiel",
         "age" : 15,
         "sex": "M",
-        "favoriteColor": "blue" }
+        "favoriteColor": "red" }
     ]
 
 let nextId = 4
