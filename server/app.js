@@ -42,6 +42,14 @@ app.post("/goats", (req, res) => {
 
     // Extract the information
     const newGoat = req.body
+
+    //Check if all required properties exist
+    if (!newGoat.name || !newGoat.age || !newGoat.sex || !newGoat.favoriteColor) {
+        res.status(400).json({
+            error: "Missing required properties. Goat must have all the properties, name, age, sex and favorite color."
+        })
+        return
+    }
     
     // Add the id to the goats data
     newGoat["id"] = nextId
@@ -75,6 +83,8 @@ app.get("/goats/:id", (req,res) => {
     res.json(goat)
 })
 
+
+// Delete button that listens to client and deletes card on click of remove button
 app.delete("/goats/:id", (req, res) => {
 
     // Pull out the id from the URL
@@ -86,7 +96,8 @@ app.delete("/goats/:id", (req, res) => {
     // If it is,
     if (exists) {
         // Delete goat / create a new version of goats that dosen't contain it
-        goats = goats.filter(g => g["id"] != id)
+        const index = goats.findIndex(g => g.id == id)
+        goats.splice(index,1)
         // Return a relevant status and message
         res.sendStatus(204)
     } else {
@@ -95,5 +106,7 @@ app.delete("/goats/:id", (req, res) => {
         })
     }
 })
+
+
 
 module.exports = app //Make server available to other files

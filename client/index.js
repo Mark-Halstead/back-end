@@ -2,6 +2,22 @@
 const herd = document.getElementById("herd")
 
 
+// Create delete button using javascript
+function createDeleteButton() {
+    const button = document.createElement("button")
+    button.innerText = "Remove"
+    button.classList.add("button")
+    button.addEventListener("click", (e) => {
+        e.preventDefault()
+        e.target.parentElement.remove()
+        const id = e.target.parentElement.getAttribute("id")
+        fetch(`http://localhost:3000/goats/${id}`, { method: "DELETE" })
+    })
+    return button
+}
+
+
+// Create goat card template + where Json data is put through
 function createGoatCard(goat) {
 
     // Create card
@@ -25,16 +41,19 @@ function createGoatCard(goat) {
     colorBox.appendChild(colorName)
     card.appendChild(colorBox)
 
-    // Customise classes
+    // Customize classes
     card.classList.add(goat["age"] < 5 ? "young" : "old")
 
-    // Append the content to card
+    // Append delete button to the card then to parent container and give button id
+    card.setAttribute("id", `${goat["id"]}`)
+    const delButton = createDeleteButton()
+    card.appendChild(delButton)
     
     // Create header and append to container
     herd.appendChild(card)
 }
 
-
+//Gets goats API from server
 async function callTheHerd() {
     
     // Request all the goats from the API
@@ -47,6 +66,7 @@ async function callTheHerd() {
     data.forEach(g => createGoatCard(g))
 }
 
+// Grab the stuff entered in HTML form
 document.querySelector("form").addEventListener("submit", (e) => {
 
     e.preventDefault()
@@ -58,8 +78,7 @@ document.querySelector("form").addEventListener("submit", (e) => {
         favoriteColor: e.target.color.value,
     } // Get all of its data
 
-    // Make an options object for fetch
-
+    // Make an options object for fetch to make POST request to server's goats
     const options = {
         method: "POST",
         body: JSON.stringify(goat),
@@ -69,8 +88,7 @@ document.querySelector("form").addEventListener("submit", (e) => {
           }
     }
 
-
-
+// Parsing JSON data through the creating card function + logging error if no success
     fetch("http://localhost:3000/goats", options) // Fetch with options
     .then(res => res.json()) // Extract the data
     .then(data => createGoatCard(data)) // Make a goat card with the data
