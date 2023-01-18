@@ -89,13 +89,29 @@ document.querySelector("form").addEventListener("submit", (e) => {
     }
 
 // Parsing JSON data through the creating card function + logging error if no success
-    fetch("http://localhost:3000/goats", options) // Fetch with options
-    .then(res => res.json()) // Extract the data
-    .then(data => createGoatCard(data)) // Make a goat card with the data
-    .catch(err => {
-        console.log(err)
-        alert("One of our goats is missing")
-    }) // Alternatively, panic
+fetch("http://localhost:3000/goats", options) // Fetch with options
+.then(res => {
+    if(res.ok) {
+        return res.json()
+    } else {
+        throw new Error(res.statusText)
+    }
+})
+.then(data => createGoatCard(data)) // Make a goat card with the data
+.catch(err => {
+    console.log(err)
+    alert("Missing required properties. Goat must have a name, age, sex, and favorite color.")
 })
 
+})
 callTheHerd()
+
+
+// Old json passing data through function
+// fetch("http://localhost:3000/goats", options) // Fetch with options
+//     .then(res => res.json()) // Extract the data
+//     .then(data => createGoatCard(data)) // Make a goat card with the data
+//     .catch(err => {
+//         console.log(err)
+//         alert("One of our goats is missing")
+//     }) // Alternatively, panic

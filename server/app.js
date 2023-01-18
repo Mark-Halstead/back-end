@@ -43,12 +43,13 @@ app.post("/goats", (req, res) => {
     // Extract the information
     const newGoat = req.body
 
-    //Check if all required properties exist
+    // Check if all the required properties exist
     if (!newGoat.name || !newGoat.age || !newGoat.sex || !newGoat.favoriteColor) {
+        // Return a response with a 400 status code and a message
         res.status(400).json({
-            error: "Missing required properties. Goat must have all the properties, name, age, sex and favorite color."
-        })
-        return
+            error: "Missing required properties. Goat must have a name, age, sex, and favorite color."
+        });
+        return;
     }
     
     // Add the id to the goats data
