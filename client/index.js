@@ -100,7 +100,7 @@ fetch("http://localhost:3000/goats", options) // Fetch with options
 .then(data => createGoatCard(data)) // Make a goat card with the data
 .catch(err => {
     console.log(err)
-    alert("Missing required properties. Goat must have a name, age, sex, and favorite color.")
+    alert("Error status 400: Missing required properties. Goat must have a name, age, sex, and favorite color.")
 })
 
 })

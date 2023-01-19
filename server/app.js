@@ -62,7 +62,7 @@ app.post("/goats", (req, res) => {
     goats.push(newGoat)
 
     // Report our success
-    res.status(201).json(newGoat)
+    res.status(201).json(newGoat) // Responds to client that a new resource successfully created and json() method used to send back newGoat object in body of response in JSON format. Allows client to access new information about goat and front end creates card out of it.
 })
 
 // Getting individual goats
